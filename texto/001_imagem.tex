@@ -1,0 +1,58 @@
+{\tiny {\tiny \documentclass[a4paper,12pt]{article}
+
+% Fonte e matemática elegante
+\usepackage{mathpazo}
+\usepackage{bm}
+
+% Idioma e codificação
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+
+% TikZ para desenhar
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+% Cores personalizadas
+\definecolor{tcolor}{RGB}{255,127,0}
+\definecolor{lcolor}{RGB}{255,178,102}
+\definecolor{pcolor}{RGB}{251,204,231}
+
+% Margem lateral suficiente para as caixas
+\setlength{\marginparwidth}{2.5cm}
+
+% Macro principal para anotações elegantes
+\newcommand{\elegantpar}[2]{%
+	\textcolor{tcolor}{$\bm\langle{}\!{}$#1${}\!{}\bm\rangle$}%
+	\begin{tikzpicture}[remember picture, baseline=-0.75ex]%
+		\node[coordinate] (inText) {};%
+	\end{tikzpicture}%
+	\marginpar{%
+		\renewcommand{\baselinestretch}{1.0}%
+		\begin{tikzpicture}[remember picture]%
+			\draw node[fill=pcolor, rounded corners, text width=\marginparwidth] (inNote) {\footnotesize #2};%
+		\end{tikzpicture}%
+	}%
+	\begin{tikzpicture}[remember picture, overlay]%
+		\draw[draw = lcolor, thick]
+		([yshift=-0.55em] inText)
+		-| ([xshift=-0.55em] inNote.west)
+		-| (inNote.west);%
+	\end{tikzpicture}%
+}
+
+\begin{document}
+	
+	\section*{Exemplo com Anotações Laterais}
+	
+	A leitura crítica é uma competência essencial no século XXI, especialmente no contexto da educação mediada por tecnologias. Compreender o papel da tecnologia na aprendizagem exige não apenas habilidades técnicas, mas também uma \elegantpar{reflexão ética e pedagógica}{As anotações laterais ajudam a expandir o conteúdo sem interromper o fluxo do texto principal}, promovendo decisões mais conscientes.
+	
+	\vspace{1em}
+	
+	O papel do(a) professor(a) está em constante transformação. Hoje, espera-se que ele(a) atue como mediador(a), facilitador(a) da aprendizagem, e não apenas como transmissor(a) de conteúdo. Essa mudança \elegantpar{exige novas competências docentes}{Como a capacidade de desenhar experiências de aprendizagem significativas, usar recursos digitais com intencionalidade e dialogar com a diversidade cultural dos estudantes}.
+	
+	\vspace{1em}
+	
+	Criar documentos tipograficamente bem construídos com \LaTeX\ também é uma forma de comunicar conhecimento com clareza e estética. A macro \texttt{\textbackslash elegantpar} é um exemplo de \elegantpar{personalização inteligente}{Você pode usar esse tipo de anotação em artigos científicos, materiais didáticos ou até portfólios profissionais}, valorizando o design da informação.
+	
+\end{document}}}
